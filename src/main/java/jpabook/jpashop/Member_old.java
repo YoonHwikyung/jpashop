@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter @Setter
-public class Member {
+public class Member_old {
 
     @Id @GeneratedValue // @GeneratedValue 데이터베이스가 자동 생성해줌
     private Long id;

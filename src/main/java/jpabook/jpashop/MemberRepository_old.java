@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Repository //컴포넌트 스캔 대상이 되어서 자동으로 스프링 빈에 등록된다
-public class MemberRepository {
+public class MemberRepository_old {
     //Repository : 엔티티를 찾아줌, dao랑 비슷한 개념
 
     // 1. EntityManager 생성
@@ -19,7 +19,7 @@ public class MemberRepository {
     private EntityManager em;
 
     // 2. 저장
-    public Long save(Member member){
+    public Long save(Member_old member){
         em.persist(member);
         return member.getId();
         // member가 아닌 id를 리턴하는 이유 : 커맨드와 쿼리를 분리, 저장하고나면 가급적이면 사이트 이펙트를 일으키는 커맨드 성이기 떄문에 리턴값을 대체로 만들지 않음.
@@ -27,8 +27,8 @@ public class MemberRepository {
     }
 
     // 3. 조회
-    public Member find(Long id){
-        return em.find(Member.class, id);
+    public Member_old find(Long id){
+        return em.find(Member_old.class, id);
     }
 
     // test

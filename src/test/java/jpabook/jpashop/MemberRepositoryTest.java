@@ -9,8 +9,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class) // junit에 스프링과 관련된 테스트 한다고 알려줘야함
 @SpringBootTest
 public class MemberRepositoryTest {
@@ -18,7 +16,7 @@ public class MemberRepositoryTest {
     // MemberRepository 테스트
 
     // @Autowired로 MemberRepository 인젝션 받음
-    @Autowired MemberRepository memberRepository;
+    @Autowired MemberRepository_old memberRepository;
 
     // 테스트 생성 ( tdd + tab )
     @Test
@@ -27,13 +25,13 @@ public class MemberRepositoryTest {
     public void testMember() throws Exception {
         //given : member를 가지고
         // 멤버가 잘 저장되어있는지 확인
-        Member member = new Member();
+        Member_old member = new Member_old();
         member.setUsername("memberA");
 
         //when : save를 하면
         Long savedId = memberRepository.save(member); // extract에서 변수 뽑아오기 : 메소드 커서 & ctrl + alt + v
         // 왜 savedId ? => memberRepository에서 id만 리턴했기때문에 변수명 savedId로 지정
-        Member findMember = memberRepository.find(savedId);
+        Member_old findMember = memberRepository.find(savedId);
 
         //then : 검증(내가 save한 값이 잘 저장되었는지 확인)
         // assertj라는 라이브러리를 스프링테스트가 가지고있음(library dependency)
@@ -49,8 +47,6 @@ public class MemberRepositoryTest {
         // 어? 영속성 컨텍스트에 있네? 하고 1차 캐시에서 그냥 꺼내온 것(id값이 같이 때문에)
 
 
-
-
         // 트랜잭션 없는 경우 에러
 //        org.springframework.dao.InvalidDataAccessApiUsageException: No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call; nested exception is javax.persistence.TransactionRequiredException: No EntityManager with actual transaction available for current thread - cannot reliably process 'persist' call
 
@@ -58,5 +54,7 @@ public class MemberRepositoryTest {
         // => MemberRepository에 트랜잭션 추가하거나 Test 케이스에 트랜잭션 추가
         // * @Transactional 은 스프링부트에서 제공하는 어노테이션으로 import(쓸 수 있는 옵션값이 더 다양)
     }
+
+
 
 }

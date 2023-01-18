@@ -1,0 +1,24 @@
+
+spring:
+#  datasource:
+#    url: jdbc:h2:mem:test
+#    username: sa
+#    password:
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create #애플리케이션 실행 시점에 테이블을 생성, 가지고 있는 테이블 다 지우고 내가 가지고있는 엔티티 정보를 보고 재생성
+#    properties:
+#      hibernate:
+##        show_sql: true
+#        format_sql: true
+
+# 스프링부트는 기본적으로 별도의 설정이 없으면 메모리 모드로 실행한다
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace #스프링 부트 2.x, hibernate5
+# org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+
+
